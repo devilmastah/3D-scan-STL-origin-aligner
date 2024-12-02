@@ -162,25 +162,29 @@ def align_plane_or_vector(mesh, target_type, output_filename):
         elif target_type == "XZ" and len(selected_points) >= 2:
             print("\n[INFO] Points confirmed. Proceeding with transformation...")
 
-            # Calculate the best-fit direction vector
+            # Calculate the best-fit direction vector in the XY plane
             selected_points_array = np.array(selected_points)
-            best_fit_vector = calculate_best_fit_vector(selected_points_array)
+            projected_points = selected_points_array.copy()
+            projected_points[:, 2] = 0  # Project points onto the XY plane
 
-            # Use the best-fit vector to align to the X-axis
-            axis = np.cross(best_fit_vector, np.array([1, 0, 0]))
-            angle = np.arccos(np.dot(best_fit_vector, np.array([1, 0, 0])))
+            best_fit_vector = calculate_best_fit_vector(projected_points)
 
-            if np.linalg.norm(axis) > 1e-6:
-                axis = axis / np.linalg.norm(axis)
-                K = np.array([
-                    [0, -axis[2], axis[1]],
-                    [axis[2], 0, -axis[0]],
-                    [-axis[1], axis[0], 0]
-                ])
-                R = np.eye(3) + np.sin(angle) * K + (1 - np.cos(angle)) * np.dot(K, K)
-            else:
-                R = np.eye(3)  # Already aligned
+            # Normalize the best-fit vector
+            best_fit_vector = best_fit_vector / np.linalg.norm(best_fit_vector)
 
+            # Compute the angle and axis for rotation around the Z-axis
+            angle = np.arctan2(best_fit_vector[1], best_fit_vector[0])  # Angle to align to X-axis
+            cos_angle = np.cos(-angle)
+            sin_angle = np.sin(-angle)
+
+            # Rotation matrix for Z-axis alignment
+            R = np.array([
+                [cos_angle, -sin_angle, 0],
+                [sin_angle, cos_angle, 0],
+                [0, 0, 1]
+            ])
+
+            # Apply the transformation
             transformed_mesh = apply_transformation(mesh, R)
             transformed_mesh.save(output_filename)
             print(f"\n[SUCCESS] Transformed mesh saved as {output_filename}")
