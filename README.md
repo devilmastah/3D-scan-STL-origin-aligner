@@ -2,7 +2,7 @@
 Small Python script to align a STL file that is result of a 3d scan with the origin for further use in other software. 
 
 I was fed up with having two Creality 3d scanners and no option to align the scanned mesh in any of the "cheap" 3d scanner software for further use in other software. I know it is possible in fusion 360 but it is quite a lot more work.
-At the moment this propably only works with STL's i have not tried anything else. I also have not found out what the size limit is yet.
+At the moment this propably only works with STL's i have not tried anything else. I also have not found out what the size limit is yet, the biggest scan i tested is 750 mb and while it gets a bit slow it works
 
 - This script was build on python 3.10
 
