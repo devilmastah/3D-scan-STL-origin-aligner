@@ -1,7 +1,8 @@
-# 3D-scan-STL-origin-aligner
-Small Python script to align a 3d scan STL file to the origin for further processing in fusion 360. 
-I was fed up with having a creality 3d scanner and no option to do this any easy way from the software itself. I know it is possible in fusion but it is quite a lot more work.
-At the moment this propably only works with STL's i have not tried anything else. 
+# 3D Scan STL Origin Aligner
+Small Python script to align a STL file that is result of a 3d scan with the origin for further use in other software. 
+
+I was fed up with having two Creality 3d scanners and no option to align the scanned mesh in any of the "cheap" 3d scanner software for further use in other software. I know it is possible in fusion 360 but it is quite a lot more work.
+At the moment this propably only works with STL's i have not tried anything else. I also have not found out what the size limit is yet.
 
 - This script was build on python 3.10
 
