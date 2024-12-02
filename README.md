@@ -1,7 +1,7 @@
 # 3D-scan-STL-origin-aligner
 Small Python script to align a 3d scan STL file to the origin for further processing in fusion 360. 
 I was fed up with having a creality 3d scanner and no option to do this any easy way from the software itself. I know it is possible in fusion but it is quite a lot more work.
-At the moment this propably only works with STL's i have not tried anything else.
+At the moment this propably only works with STL's i have not tried anything else. 
 
 - This script was build on python 3.10
 
@@ -29,3 +29,5 @@ Key B and Space do the same thing. After pressing space the new stl will be save
 
 Thats it. Maybe when i find time i will improve on it, or feel free to fork it and make use of it :)
 Known issue now, sometimes the point you select actually does not appear (the blue dot), big chance its on the backside of your model! i do not know why this happens. Just undo the last point you added and try again. Sometimes changing the angle of the view helps a lot! 
+
+This was quickly thrown together with ChatGPT :)
