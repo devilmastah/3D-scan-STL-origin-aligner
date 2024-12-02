@@ -13,13 +13,19 @@ Following packages were installed from PIP:
 
 The command line version is just the basic code that opens an STL file in the same directory with a certain name, see bottom of the script
 
-The Origin aligner.py file i used to make this a exe package that i can drag drop the STL file on with:
+The Origin aligner.py file is the same but accepts dragging a file on it after making an exe of it with pyinstaller:
 - pyinstaller --onefile originaligner.py
 
 
 When the STL file is opened it opens a 3d representation, you can rotate the model with the mouse. 
-First step is to find 3 points for the X/Y plane, hover your mouse above the points, then right click or press P on the keyboard. 
-After clicking 3 points it will realign the mesh to the XY plane, close the 3d representation, it will save the XY aligned file as alignedXY.stl, then it opens a new window, click two points to rotate the model around the Z axis to align with the X axsis. 
-Closing the window will save alignedXYZ. 
+First step is to select at least 3 points for the X/Y plane, hover your mouse above the points, then right click or press "p" on the keyboard. 
+The amount of selected points will be noted in the console window, you can go back a point with the button "b" on the keyboard. 
+After you are satisfied with the point selection you can press space to process the points, it will rotate the model to the XY plane by best fitting to the selected points. 
+After this step you will see the rotated model in the window, it will already be saved as alignedXY.stl 
+To proceed to fixing the rotation to the X axis close the 3d viewer, it will open up again after closing for the next step. 
 
-Thats it. Maybe when i find time i will improve on it, or feel free to fork it and make use of it :) 
+The next step is selecting a line that you want to be parrallel to the X axis. This need to be at least 2 points but can be more, an average vector will be used, so more points might be more accurate. 
+Key B and Space do the same thing. After pressing space the new stl will be saved as alignedXYZ.stl
+
+Thats it. Maybe when i find time i will improve on it, or feel free to fork it and make use of it :)
+Known issue now, sometimes the point you select actually does not appear (the blue dot), big chance its on the backside of your model! i do not know why this happens. Just undo the last point you added and try again. Sometimes changing the angle of the view helps a lot! 
