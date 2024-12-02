@@ -12,7 +12,7 @@ Following packages were installed from PIP:
 The command line version is just the basic code that opens an STL file in the same directory with a certain name, see bottom of the script
 
 The Origin aligner.py file i used to make this a exe package that i can drag drop the STL file on with:
-pyinstaller --onefile originaligner.py
+- pyinstaller --onefile originaligner.py
 
 
 When the STL file is opened it opens a 3d representation, you can rotate the model with the mouse. 
