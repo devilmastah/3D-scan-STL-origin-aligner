@@ -20,7 +20,7 @@ The Origin aligner.py file is the same but accepts dragging a file on it after m
 
 When the STL file is opened it opens a 3d representation, you can rotate the model with the mouse. 
 First step is to select at least 3 points for the X/Y plane, hover your mouse above the points, then right click or press "p" on the keyboard. 
-The amount of selected points will be noted in the console window, you can go back a point with the button "b" on the keyboard. 
+The amount of selected points will be noted in the console window, you can go back a point with the button "b" on the keyboard or remove point 1 to 9 with the numbers on the keyboard. 
 After you are satisfied with the point selection you can press space to process the points, it will rotate the model to the XY plane by best fitting to the selected points. 
 After this step you will see the rotated model in the window, it will already be saved as alignedXY.stl 
 To proceed to fixing the rotation to the X axis close the 3d viewer, it will open up again after closing for the next step. 
