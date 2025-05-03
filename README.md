@@ -1,34 +1,70 @@
 # 3D Scan STL Origin Aligner
-Small Python script to align a STL file that is result of a 3d scan with the origin for further use in other software. 
 
-I was fed up with having two Creality 3d scanners and no option to align the scanned mesh in any of the "cheap" 3d scanner software for further use in other software. I know it is possible in fusion 360 but it is quite a lot more work.
-At the moment this propably only works with STL's i have not tried anything else. I also have not found out what the size limit is yet, the biggest scan i tested is 750 mb and while it gets a bit slow it works
+A small Python tool to help **align STL files** (e.g. from 3D scanners) to the **origin and axes** for cleaner integration in CAD or modeling workflows.
 
-- This script was build on python 3.10
+I built this out of frustration: I own two Creality 3D scanners, and none of the “affordable” software options support proper mesh alignment. Sure, Fusion 360 can do it — but it’s way more work than it should be.
 
-Following packages were installed from PIP:
-- pip install pyvista
-- pip install vtk
-- pip install numpy
+> ✅ This tool currently supports only STL files (others untested).  
+> 🧪 I’ve used it on scans up to **750 MB**; it gets a bit slow, but works.
 
+---
 
-The command line version is just the basic code that opens an STL file in the same directory with a certain name, see bottom of the script
+## 🔧 Built With
 
-The Origin aligner.py file is the same but accepts dragging a file on it after making an exe of it with pyinstaller:
-- pyinstaller --onefile originaligner.py
+- **Python 3.10**
+- Required packages:
 
+  ```bash
+  pip install pyvista vtk numpy
+  ```
 
-When the STL file is opened it opens a 3d representation, you can rotate the model with the mouse. 
-First step is to select at least 3 points for the X/Y plane, hover your mouse above the points, then right click or press "p" on the keyboard. 
-The amount of selected points will be noted in the console window, you can go back a point with the button "b" on the keyboard or remove point 1 to 9 with the numbers on the keyboard. 
-After you are satisfied with the point selection you can press space to process the points, it will rotate the model to the XY plane by best fitting to the selected points. 
-After this step you will see the rotated model in the window, it will already be saved as alignedXY.stl 
-To proceed to fixing the rotation to the X axis close the 3d viewer, it will open up again after closing for the next step. 
+---
 
-The next step is selecting a line that you want to be parrallel to the X axis. This need to be at least 2 points but can be more, an average vector will be used, so more points might be more accurate. 
-Key B and Space do the same thing. After pressing space the new stl will be saved as alignedXYZ.stl
+## 💻 How It Works
 
-Thats it. Maybe when i find time i will improve on it, or feel free to fork it and make use of it :)
-Known issue now, sometimes the point you select actually does not appear (the blue dot), big chance its on the backside of your model! i do not know why this happens. Just undo the last point you added and try again. Sometimes changing the angle of the view helps a lot! 
+### Step 1: Choose Your Version
 
-This was quickly thrown together with ChatGPT :)
+- `commandlineversion.py`: basic version — looks for a file called `INPUTSTLFILE.stl` in the same folder.
+- `originaligner.py`: drag-and-drop version. Can be compiled into a standalone `.exe` with:
+
+  ```bash
+  pyinstaller --onefile originaligner.py
+  ```
+
+### Step 2: Using the Tool
+
+When you open an STL file:
+
+1. A 3D viewer opens (rotate with your mouse).
+2. **Select at least 3 points** to define the XY plane:
+   - Hover your mouse over the model.
+   - Press `P` or right-click to select a point.
+   - A blue dot will appear.
+3. **Keyboard controls:**
+   - `B`: Undo the last selected point.
+   - `1–9`: Remove a specific point by number.
+   - `Space`: Confirm selection and align to the XY plane.
+
+> Once confirmed, the file is saved as `alignedXY.stl`.
+
+4. Close the viewer to continue to **Step 2: X-axis alignment**.
+5. Select **2 or more points** that define a line you want to be parallel to the X-axis (top-down rotation).
+   - Same controls apply (`P`, `B`, `1–9`, `Space`).
+   - Uses a best-fit average direction vector.
+
+> Once confirmed, the final result is saved as `alignedXYZ.stl`.
+
+---
+
+## ⚠️ Known Issues
+
+- Sometimes the selected point (blue sphere) doesn’t appear — it may be on the backside of the model.
+  - Try undoing and rotating your view before selecting again, having a steep angle in the view to what you want to click helps a lot i find.
+- Large STL files may make the app slow, but it should still work.
+
+---
+
+## 🤖 About
+
+This tool was quickly built with help from **ChatGPT**.  
+Feel free to fork it, improve it, or build on it!
